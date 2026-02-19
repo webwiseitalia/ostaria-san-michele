@@ -1,3 +1,4 @@
+import useLenis from './hooks/useLenis'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import ChiSiamo from './components/ChiSiamo'
@@ -10,8 +11,10 @@ import Contatti from './components/Contatti'
 import Footer from './components/Footer'
 
 function App() {
+  useLenis()
+
   return (
-    <div className="min-h-screen">
+    <div className="overflow-x-hidden">
       <Navbar />
       <Hero />
       <ChiSiamo />

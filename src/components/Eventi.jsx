@@ -1,64 +1,91 @@
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import esternoGiochi from '../assets/foto/esterno-area-giochi.webp'
 
+gsap.registerPlugin(ScrollTrigger)
+
 export default function Eventi() {
+  const sectionRef = useRef(null)
+  const imgRef = useRef(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(imgRef.current,
+        { scale: 1.2, y: 30 },
+        { scale: 1, y: -30, ease: 'none',
+          scrollTrigger: { trigger: imgRef.current, start: 'top bottom', end: 'bottom top', scrub: 1.5 }
+        }
+      )
+
+      gsap.utils.toArray('.ev-reveal').forEach((el, i) => {
+        gsap.fromTo(el,
+          { y: 45, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1, ease: 'power3.out',
+            scrollTrigger: { trigger: el, start: 'top 90%' },
+            delay: i * 0.05
+          }
+        )
+      })
+    }, sectionRef)
+    return () => ctx.revert()
+  }, [])
+
+  const items = [
+    'Pranzi e cene per famiglie e gruppi',
+    'Compleanni e ricorrenze speciali',
+    'Menu personalizzabili su richiesta',
+    'Ideale per motociclisti, ciclisti ed escursionisti',
+    'Area giochi per bambini',
+  ]
+
   return (
-    <section id="eventi" className="section-padding bg-cream-50">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <span className="text-forest-600 font-semibold tracking-[0.2em] uppercase text-sm">Eventi & Occasioni</span>
-            <h2 className="section-title mt-3 mb-6">Il luogo perfetto per ogni occasione</h2>
-            <p className="text-lg text-wood-600 leading-relaxed mb-8">
-              L'Ostaria San Michele è ideale per pranzi in famiglia, compleanni, ricorrenze ed eventi privati.
-              La capienza del locale, le aree esterne con vista panoramica e l'area giochi lo rendono il posto
-              perfetto per gruppi e famiglie.
+    <section ref={sectionRef} id="eventi" style={{ paddingTop: 'clamp(5rem, 12vh, 10rem)', paddingBottom: 'clamp(4rem, 10vh, 8rem)', background: 'var(--cream-50)' }}>
+      <div className="grid md:grid-cols-12 gap-8 md:gap-0">
+        {/* Image — takes 7 cols, bleeds left */}
+        <div className="md:col-span-7 md:col-start-1 overflow-hidden" style={{ height: 'clamp(400px, 65vh, 650px)' }}>
+          <img ref={imgRef} src={esternoGiochi} alt="Esterno con terrazza e area giochi" className="w-full h-full object-cover" />
+        </div>
+
+        {/* Text — offset right, overlapping */}
+        <div className="md:col-span-5 md:col-start-8 relative z-10 space-gutter-right" style={{ marginTop: 'clamp(0rem, 5vw, 3rem)', paddingLeft: 'clamp(1.5rem, 3vw, 3rem)' }}>
+          <div className="md:-ml-20 bg-cream-50/95 backdrop-blur-sm p-6 md:p-10">
+            <div className="ev-reveal flex items-center gap-4 mb-6">
+              <div className="w-10 h-px bg-wood-300" />
+              <span className="mono text-[11px] tracking-[0.3em] uppercase text-wood-400">Eventi</span>
+            </div>
+
+            <h2 className="ev-reveal font-serif text-wood-800" style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)', fontWeight: 700, lineHeight: 1 }}>
+              Il luogo perfetto
+            </h2>
+            <h2 className="ev-reveal font-serif text-wood-400 italic" style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)', fontWeight: 400, lineHeight: 1, marginTop: '0.1em', marginLeft: 'clamp(0.5rem, 2vw, 2rem)' }}>
+              per ogni occasione.
+            </h2>
+
+            <p className="ev-reveal text-wood-600 mt-8" style={{ fontSize: 'clamp(0.9rem, 1vw, 1.05rem)', lineHeight: 1.8, fontWeight: 300 }}>
+              L'Ostaria San Michele e ideale per pranzi in famiglia, compleanni, ricorrenze ed eventi privati.
             </p>
 
-            <div className="space-y-4 mb-8">
-              {[
-                'Pranzi e cene per famiglie e gruppi',
-                'Compleanni e ricorrenze speciali',
-                'Menù personalizzabili su richiesta',
-                'Ideale per motociclisti, ciclisti ed escursionisti',
-                'Area giochi per bambini',
-                'Posti a sedere all\'aperto con vista',
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <div className="w-6 h-6 bg-forest-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-3.5 h-3.5 text-forest-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <span className="text-wood-700">{item}</span>
+            <div className="mt-8 space-y-3">
+              {items.map((item, i) => (
+                <div key={i} className="ev-reveal flex items-start gap-3">
+                  <span className="mono text-[9px] text-forest-600 mt-1.5">+</span>
+                  <span className="text-wood-700" style={{ fontSize: '0.9rem', fontWeight: 400 }}>{item}</span>
                 </div>
               ))}
             </div>
 
-            <a href="tel:+390364194547" className="btn-primary">
-              <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-              Organizza il tuo evento
-            </a>
-          </div>
-
-          <div className="relative">
-            <div className="rounded-2xl overflow-hidden shadow-2xl">
-              <img
-                src={esternoGiochi}
-                alt="L'esterno dell'Ostaria con area giochi e terrazza panoramica"
-                className="w-full h-[500px] object-cover"
-              />
+            <div className="ev-reveal mt-10">
+              <a href="tel:+390364194547" className="group inline-flex items-center gap-3">
+                <span className="w-10 h-10 rounded-full border border-wood-300 flex items-center justify-center group-hover:bg-forest-600 group-hover:border-forest-600 transition-all duration-500">
+                  <svg className="w-4 h-4 text-wood-600 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                </span>
+                <span className="text-wood-700 text-sm tracking-wider uppercase border-b border-wood-300 pb-0.5 group-hover:border-forest-600 transition-colors duration-500" style={{ fontWeight: 400 }}>Organizza il tuo evento</span>
+              </a>
             </div>
 
-            <div className="absolute -bottom-4 -right-4 bg-white rounded-xl p-4 shadow-xl border border-cream-200">
-              <div className="flex items-center gap-2">
-                <span className="text-2xl">🏍️</span>
-                <div>
-                  <p className="font-semibold text-wood-800 text-sm">Segnalato su</p>
-                  <p className="text-forest-600 text-sm font-bold">Moto&Cucina</p>
-                </div>
-              </div>
+            <div className="ev-reveal mt-8 pt-6 border-t border-cream-300/50">
+              <span className="mono text-[10px] text-wood-400/50 tracking-wider">Segnalato su Moto&Cucina</span>
             </div>
           </div>
         </div>

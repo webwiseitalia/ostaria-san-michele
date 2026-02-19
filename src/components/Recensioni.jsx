@@ -1,90 +1,99 @@
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
+
 const reviews = [
-  {
-    name: 'Marco B.',
-    rating: 5,
-    text: 'Location stupenda immersa nella natura con una vista lago mozzafiato. Lo chef Giorgio è appassionato e preparato, i piatti sono curati e abbondanti. I casoncelli camuni sono eccezionali!',
-    source: 'Google',
-  },
-  {
-    name: 'Francesca R.',
-    rating: 5,
-    text: 'Barbara è cordiale e professionale nella guida ai vini. Il tiramisù con la spongada è memorabile. Ambiente caldo e accogliente, perfetto per una serata speciale.',
-    source: 'Google',
-  },
-  {
-    name: 'Luca P.',
-    rating: 5,
-    text: 'Le carni al Josper sono perfette — la fiorentina era eccezionale. Materie prime di altissima qualità e un rapporto qualità/prezzo ottimo. Ci torneremo sicuramente!',
-    source: 'Google',
-  },
-  {
-    name: 'Anna M.',
-    rating: 5,
-    text: 'Perfetto per famiglie con bambini: area giochi all\'aperto e personale giovane e gentile. Il tagliolino San Michele con porcini e trota è un piatto da non perdere.',
-    source: 'Google',
-  },
+  { name: 'Marco B.', text: 'Location stupenda immersa nella natura con una vista lago mozzafiato. Lo chef Giorgio e appassionato e preparato, i piatti curati e abbondanti. I casoncelli camuni sono eccezionali.' },
+  { name: 'Francesca R.', text: 'Barbara e cordiale e professionale nella guida ai vini. Il tiramisu con la spongada e memorabile. Ambiente caldo e accogliente.' },
+  { name: 'Luca P.', text: 'Le carni al Josper sono perfette — la fiorentina era eccezionale. Materie prime di altissima qualita, rapporto qualita/prezzo ottimo.' },
+  { name: 'Anna M.', text: 'Perfetto per famiglie con bambini: area giochi e personale giovane e gentile. Il tagliolino San Michele con porcini e trota da non perdere.' },
 ]
-
-const badges = [
-  { icon: '⭐', label: 'Google', value: '4.4 stelle', sub: '~294 recensioni' },
-  { icon: '📰', label: 'Brescia a Tavola', value: 'Segnalato', sub: 'Appunti di degustazione' },
-  { icon: '🏆', label: 'Alma 2022', value: '2° Posto', sub: 'Casoncelli Camuni' },
-  { icon: '🤝', label: 'Ass. Ristoratori', value: 'Membro', sub: 'Ristoratori Vallecamonica' },
-]
-
-function StarRating({ rating }) {
-  return (
-    <div className="flex gap-0.5">
-      {[...Array(5)].map((_, i) => (
-        <svg key={i} className={`w-4 h-4 ${i < rating ? 'text-yellow-500' : 'text-stone-300'}`} fill="currentColor" viewBox="0 0 20 20">
-          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
-      ))}
-    </div>
-  )
-}
 
 export default function Recensioni() {
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray('.rev-item').forEach((el, i) => {
+        gsap.fromTo(el,
+          { y: 70, opacity: 0, rotate: i % 2 === 0 ? -1 : 1 },
+          { y: 0, opacity: 1, rotate: 0, duration: 1.2, ease: 'power3.out',
+            scrollTrigger: { trigger: el, start: 'top 92%' },
+            delay: i * 0.08
+          }
+        )
+      })
+
+      gsap.fromTo('.rev-stat',
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, stagger: 0.12, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: '.rev-stat', start: 'top 90%' }
+        }
+      )
+    }, sectionRef)
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <section id="recensioni" className="section-padding bg-forest-800">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <span className="text-forest-300 font-semibold tracking-[0.2em] uppercase text-sm">Dicono di noi</span>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-cream-100 mt-3 mb-4">Le Recensioni</h2>
-          <p className="text-lg text-cream-300/70 max-w-2xl mx-auto">
-            Cosa dicono i nostri ospiti dell'esperienza all'Ostaria San Michele
-          </p>
+    <section ref={sectionRef} id="recensioni" style={{ paddingTop: 'clamp(6rem, 14vh, 12rem)', paddingBottom: 'clamp(4rem, 10vh, 8rem)', background: 'var(--forest-800)' }}>
+      <div className="space-gutter">
+        {/* Title — raw, left */}
+        <div className="flex items-center gap-4 mb-6">
+          <div className="w-12 h-px bg-forest-400/30" />
+          <span className="mono text-[11px] tracking-[0.3em] uppercase text-forest-400/50">Dicono di noi</span>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-          {badges.map((badge) => (
-            <div key={badge.label} className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10 text-center">
-              <span className="text-3xl">{badge.icon}</span>
-              <p className="font-bold text-cream-100 text-lg mt-2">{badge.value}</p>
-              <p className="text-cream-300/70 text-sm">{badge.sub}</p>
-            </div>
-          ))}
-        </div>
+        <h2 className="font-serif text-cream-100" style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', fontWeight: 700, lineHeight: 0.95, letterSpacing: '-0.02em' }}>
+          Le voci
+        </h2>
+        <h2 className="font-serif text-cream-300/40 italic" style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', fontWeight: 400, lineHeight: 0.95, marginLeft: 'clamp(1rem, 4vw, 5rem)', letterSpacing: '-0.02em' }}>
+          dei nostri ospiti.
+        </h2>
+      </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {reviews.map((review, i) => (
-            <div key={i} className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:bg-white/10 transition-colors duration-300">
-              <StarRating rating={review.rating} />
-              <p className="text-cream-200/90 mt-4 leading-relaxed text-lg italic">
-                "{review.text}"
-              </p>
-              <div className="mt-6 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-forest-600/30 rounded-full flex items-center justify-center">
-                    <span className="text-cream-200 font-bold text-sm">{review.name.charAt(0)}</span>
-                  </div>
-                  <span className="font-semibold text-cream-200">{review.name}</span>
+      {/* Stats row — NOT cards, raw numbers */}
+      <div className="space-gutter flex flex-wrap gap-10 md:gap-20" style={{ marginTop: 'clamp(3rem, 6vh, 5rem)' }}>
+        {[
+          { value: '4.4', label: 'Google', sub: '~294 recensioni' },
+          { value: '2°', label: 'Alma 2022', sub: 'Casoncelli Camuni' },
+          { value: '—', label: 'Brescia a Tavola', sub: 'Segnalato' },
+        ].map((s, i) => (
+          <div key={i} className="rev-stat">
+            <span className="font-serif text-cream-100 block" style={{ fontSize: 'clamp(2rem, 3.5vw, 3.5rem)', fontWeight: 700, lineHeight: 1 }}>{s.value}</span>
+            <span className="mono text-[10px] tracking-[0.2em] uppercase text-cream-200/30 block mt-2">{s.label}</span>
+            <span className="text-cream-200/20 text-xs block mt-0.5">{s.sub}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Reviews — editorial, staggered columns */}
+      <div className="space-gutter grid md:grid-cols-12 gap-y-12" style={{ marginTop: 'clamp(4rem, 8vh, 7rem)' }}>
+        {reviews.map((r, i) => {
+          const colStart = [1, 5, 2, 7]
+          const colSpan = [5, 6, 5, 5]
+          return (
+            <div
+              key={i}
+              className="rev-item"
+              style={{
+                gridColumn: `${colStart[i]} / span ${colSpan[i]}`,
+                marginTop: i > 0 && i % 2 !== 0 ? 'clamp(0rem, 3vw, 2rem)' : '0',
+              }}
+            >
+              <div className="border-l border-cream-200/10 pl-6">
+                <p className="text-cream-200/60 italic" style={{ fontSize: 'clamp(0.95rem, 1.1vw, 1.1rem)', lineHeight: 1.7, fontWeight: 300 }}>
+                  "{r.text}"
+                </p>
+                <div className="mt-4 flex items-center gap-3">
+                  <div className="w-6 h-px bg-cream-200/20" />
+                  <span className="mono text-[10px] tracking-wider uppercase text-cream-200/30">{r.name}</span>
                 </div>
-                <span className="text-xs text-cream-400/50 bg-white/5 px-3 py-1 rounded-full">{review.source}</span>
               </div>
             </div>
-          ))}
-        </div>
+          )
+        })}
       </div>
     </section>
   )

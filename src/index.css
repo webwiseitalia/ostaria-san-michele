@@ -1,32 +1,147 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:wght@300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Lato:wght@100;300;400;700;900&family=Space+Mono:wght@400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --wood-900: #4a2f1b;
+  --wood-800: #5a3920;
+  --wood-700: #6e4526;
+  --wood-600: #8c5c2e;
+  --wood-500: #a67339;
+  --wood-400: #b8894f;
+  --wood-300: #cba97a;
+  --wood-200: #e0ccad;
+  --wood-100: #f0e6d6;
+  --wood-50: #faf6f1;
+  --forest-800: #1f3f24;
+  --forest-700: #254e2b;
+  --forest-600: #2d6133;
+  --forest-500: #3d7a43;
+  --forest-400: #5a9960;
+  --forest-300: #85b888;
+  --cream-50: #fffefb;
+  --cream-100: #fdf8f0;
+  --cream-200: #faf0de;
+  --cream-300: #f5e4c6;
+}
+
 @layer base {
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
+
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
   body {
-    @apply font-sans text-wood-800 bg-cream-50 antialiased;
+    @apply antialiased overflow-x-hidden;
+    font-family: 'Lato', system-ui, sans-serif;
+    color: var(--wood-800);
+    background: var(--cream-50);
+  }
+
+  ::selection {
+    background: var(--forest-600);
+    color: var(--cream-50);
   }
 }
 
-@layer components {
-  .section-padding {
-    @apply px-4 sm:px-6 lg:px-8 py-16 md:py-24;
-  }
-  .section-title {
-    @apply font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-wood-800 mb-4;
-  }
-  .section-subtitle {
-    @apply text-lg md:text-xl text-wood-500 max-w-2xl;
-  }
-  .btn-primary {
-    @apply inline-flex items-center justify-center px-8 py-3.5 bg-forest-600 text-white font-semibold rounded-lg hover:bg-forest-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5;
-  }
-  .btn-secondary {
-    @apply inline-flex items-center justify-center px-8 py-3.5 border-2 border-wood-400 text-wood-700 font-semibold rounded-lg hover:bg-wood-50 transition-all duration-300;
-  }
+/* Fluid typography */
+.fluid-display {
+  font-size: clamp(3rem, 8vw + 1rem, 9rem);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+}
+
+.fluid-heading {
+  font-size: clamp(2.2rem, 5vw + 0.5rem, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+}
+
+.fluid-subheading {
+  font-size: clamp(1.4rem, 2.5vw + 0.3rem, 3rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.fluid-body-lg {
+  font-size: clamp(1.05rem, 1.2vw + 0.2rem, 1.35rem);
+  line-height: 1.7;
+}
+
+/* Intentional spacing system — NOT regular */
+.space-gutter {
+  padding-left: clamp(1.5rem, 5vw, 6rem);
+  padding-right: clamp(1.5rem, 5vw, 6rem);
+}
+
+.space-gutter-left {
+  padding-left: clamp(1.5rem, 5vw, 6rem);
+}
+
+.space-gutter-right {
+  padding-right: clamp(1.5rem, 5vw, 6rem);
+}
+
+/* Reveal animations */
+.reveal-line {
+  overflow: hidden;
+}
+
+.reveal-line .line {
+  transform: translateY(105%);
+}
+
+.char-reveal .char {
+  opacity: 0;
+  transform: translateY(40px) rotate(3deg);
+}
+
+/* Horizontal rule — hand drawn feel */
+.hr-organic {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--wood-300) 15%,
+    var(--wood-200) 50%,
+    var(--wood-300) 85%,
+    transparent 100%
+  );
+  border: none;
+}
+
+/* Image parallax container */
+.img-parallax-wrap {
+  overflow: hidden;
+}
+
+.img-parallax-wrap img {
+  will-change: transform;
+}
+
+/* Cursor style */
+* {
+  cursor: default;
+}
+
+a, button, [role="button"] {
+  cursor: pointer;
+}
+
+/* Mono accent text */
+.mono {
+  font-family: 'Space Mono', monospace;
 }
