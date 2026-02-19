@@ -71,7 +71,7 @@ export default function ChiSiamo() {
 
         {/* Image — larger, offset right */}
         <div className="md:col-span-7 md:col-start-6 overflow-hidden md:-ml-8">
-          <img ref={imgRef} src={salaVeranda} alt="La sala veranda in legno" className="w-full object-cover" style={{ height: 'clamp(350px, 55vh, 550px)' }} />
+          <img ref={imgRef} src={salaVeranda} alt="La sala veranda in legno dell'Ostaria San Michele" title="Sala veranda — Ostaria San Michele" className="w-full object-cover" style={{ height: 'clamp(350px, 55vh, 550px)' }} loading="lazy" width={800} height={550} />
         </div>
       </div>
 
@@ -113,7 +113,7 @@ export default function ChiSiamo() {
             </p>
             <div className="mt-5 pt-4 border-t border-cream-300 flex items-center gap-3">
               <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
-                <img src={servizioVino} alt="Servizio vino" className="w-full h-full object-cover" />
+                <img src={servizioVino} alt="Servizio vino rosso all'Ostaria San Michele" title="Servizio vino" className="w-full h-full object-cover" loading="lazy" width={48} height={48} />
               </div>
               <span style={{ fontSize: '0.85rem', fontWeight: 300, color: 'var(--wood-400)' }}>Cantina con selezione camuna e Franciacorta</span>
             </div>

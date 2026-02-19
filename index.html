@@ -2,16 +2,103 @@
 <html lang="it">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ostaria San Michele — Cucina Camuna a 900m sul Lago d'Iseo</title>
     <meta name="description" content="Ostaria San Michele — Cucina tipica camuna e bresciana, pizza a legna e carni al forno Josper. Nel borgo medievale di Grignaghe, a 900 m sul Lago d'Iseo." />
     <meta name="keywords" content="ristorante Grignaghe, ostaria Pisogne, ristorante tipico Valcamonica, ristorante vista lago d'Iseo montagna, cucina camuna Pisogne, ristorante Josper Brescia, casoncelli camuni, dove mangiare Pisogne montagna" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://ostariasanmichele.it/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph -->
     <meta property="og:title" content="Ostaria San Michele — Cucina Camuna a 900m sul Lago d'Iseo" />
     <meta property="og:description" content="Cucina tipica camuna e bresciana, pizza a legna e carni al forno Josper nel borgo medievale di Grignaghe." />
     <meta property="og:type" content="restaurant" />
-    <meta property="og:url" content="https://ostariasanmichele.it" />
+    <meta property="og:url" content="https://ostariasanmichele.it/" />
     <meta property="og:site_name" content="Ostaria San Michele" />
-    <title>Ostaria San Michele — Cucina Camuna a 900m sul Lago d'Iseo</title>
+    <meta property="og:image" content="https://ostariasanmichele.it/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="it_IT" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ostaria San Michele — Cucina Camuna a 900m sul Lago d'Iseo" />
+    <meta name="twitter:description" content="Cucina tipica camuna e bresciana, pizza a legna e carni al forno Josper nel borgo medievale di Grignaghe." />
+    <meta name="twitter:image" content="https://ostariasanmichele.it/og-image.jpg" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "Ostaria San Michele",
+      "description": "Cucina tipica camuna e bresciana, pizza a legna e carni al forno Josper. Nel borgo medievale di Grignaghe, a 900 m sul Lago d'Iseo.",
+      "url": "https://ostariasanmichele.it",
+      "telephone": "+390364194547",
+      "email": "info@ostariasanmichele.it",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Via San Michele, 6",
+        "addressLocality": "Pisogne",
+        "addressRegion": "BS",
+        "postalCode": "25055",
+        "addressCountry": "IT"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 45.8092,
+        "longitude": 10.1087
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Friday", "Saturday", "Sunday"],
+          "opens": "12:00",
+          "closes": "22:00"
+        }
+      ],
+      "servesCuisine": ["Cucina Camuna", "Cucina Bresciana", "Pizza", "Carne alla griglia"],
+      "priceRange": "€€",
+      "image": "https://ostariasanmichele.it/og-image.jpg",
+      "sameAs": [
+        "https://www.instagram.com/ostariasanmichele",
+        "https://www.facebook.com/ostariasanmichele",
+        "https://www.tiktok.com/@ostariasanmichele"
+      ],
+      "hasMenu": {
+        "@type": "Menu",
+        "hasMenuSection": [
+          {
+            "@type": "MenuSection",
+            "name": "Antipasti",
+            "hasMenuItem": [
+              {"@type": "MenuItem", "name": "Sarde in Saor", "description": "Rivisitazione Slow Food con sarda di Montisola e polenta"},
+              {"@type": "MenuItem", "name": "Tomino con uova e tartufo", "description": "Tomino fondente, uova e tartufo fresco"},
+              {"@type": "MenuItem", "name": "Tagliere della zona", "description": "Salame, culaccia, pancetta, bresaola con giardiniera fatta in casa"}
+            ]
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Primi",
+            "hasMenuItem": [
+              {"@type": "MenuItem", "name": "Tagliolino San Michele", "description": "Fatto in casa, tutto tuorlo. Porcini dei boschi locali e trota marinata e affumicata"},
+              {"@type": "MenuItem", "name": "Casoncelli Camuni", "description": "Erba di San Pietro, polenta di Erbanno, pancetta croccante di Grignaghe — Premio Alma 2022"}
+            ]
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Carni al Forno Josper",
+            "hasMenuItem": [
+              {"@type": "MenuItem", "name": "Fiorentina di scottona", "description": "Cottura alla griglia Josper di alto livello"},
+              {"@type": "MenuItem", "name": "Bocconcino di cervo in salmi", "description": "Con polenta di Erbanno"}
+            ]
+          }
+        ]
+      }
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

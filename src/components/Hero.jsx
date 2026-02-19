@@ -36,7 +36,7 @@ export default function Hero() {
   return (
     <section ref={sectionRef} id="hero" className="relative overflow-hidden" style={{ height: '110vh' }}>
       <div className="absolute inset-0">
-        <img ref={imgRef} src={vistaPanoramica} alt="Vista panoramica dal borgo di Grignaghe sul Lago d Iseo" className="w-full object-cover" style={{ height: '130%', objectPosition: '50% 30%' }} />
+        <img ref={imgRef} src={vistaPanoramica} alt="Vista panoramica dal borgo di Grignaghe sul Lago d'Iseo" title="Ostaria San Michele — Vista dal borgo di Grignaghe" className="w-full object-cover" style={{ height: '130%', objectPosition: '50% 30%' }} loading="eager" width={1920} height={1080} />
         <div ref={overlayRef} className="absolute inset-0" style={{ background: 'linear-gradient(160deg, rgba(74,47,27,0.6) 0%, rgba(26,51,31,0.55) 40%, rgba(74,47,27,0.75) 100%)', opacity: 0.6 }} />
       </div>
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-center" style={{ paddingBottom: 'clamp(2rem, 6vh, 5rem)' }}>

@@ -1,3 +1,4 @@
+import { Routes, Route } from 'react-router-dom'
 import useLenis from './hooks/useLenis'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -9,8 +10,11 @@ import Recensioni from './components/Recensioni'
 import Galleria from './components/Galleria'
 import Contatti from './components/Contatti'
 import Footer from './components/Footer'
+import PrivacyPolicy from './components/PrivacyPolicy'
+import CookiePolicy from './components/CookiePolicy'
+import CookieBanner from './components/CookieBanner'
 
-function App() {
+function HomePage() {
   useLenis()
 
   return (
@@ -26,6 +30,19 @@ function App() {
       <Contatti />
       <Footer />
     </div>
+  )
+}
+
+function App() {
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/cookie-policy" element={<CookiePolicy />} />
+      </Routes>
+      <CookieBanner />
+    </>
   )
 }
 

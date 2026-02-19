@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -97,8 +98,8 @@ export default function Footer() {
       <div className="space-gutter flex flex-col md:flex-row justify-between items-start md:items-center gap-3" style={{ marginTop: 'clamp(3rem, 6vh, 5rem)' }}>
         <span className="mono text-[9px] tracking-wider" style={{ color: 'rgba(250,240,222,0.15)' }}>© 2025 Ostaria San Michele — Grignaghe, Pisogne (BS)</span>
         <div className="flex gap-6">
-          <a href="#" className="mono text-[9px] tracking-wider transition-colors hover:text-cream-200/30" style={{ color: 'rgba(250,240,222,0.15)' }}>Privacy</a>
-          <a href="#" className="mono text-[9px] tracking-wider transition-colors hover:text-cream-200/30" style={{ color: 'rgba(250,240,222,0.15)' }}>Cookie</a>
+          <Link to="/privacy-policy" onClick={() => window.scrollTo(0, 0)} className="mono text-[9px] tracking-wider transition-colors hover:text-cream-200/30" style={{ color: 'rgba(250,240,222,0.15)' }}>Privacy</Link>
+          <Link to="/cookie-policy" onClick={() => window.scrollTo(0, 0)} className="mono text-[9px] tracking-wider transition-colors hover:text-cream-200/30" style={{ color: 'rgba(250,240,222,0.15)' }}>Cookie</Link>
         </div>
       </div>
 

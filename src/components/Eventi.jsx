@@ -60,7 +60,7 @@ export default function Eventi() {
       <div className="space-gutter grid md:grid-cols-12 gap-8 md:gap-6" style={{ marginTop: 'clamp(3rem, 7vh, 5rem)' }}>
         {/* Image */}
         <div className="md:col-span-7 ev-reveal overflow-hidden rounded-sm" style={{ height: 'clamp(350px, 55vh, 550px)' }}>
-          <img ref={imgRef} src={esternoGiochi} alt="Esterno con terrazza e area giochi" className="w-full h-full object-cover" style={{ transform: 'scale(1.15)' }} />
+          <img ref={imgRef} src={esternoGiochi} alt="Esterno con terrazza e area giochi per eventi privati" title="Area eventi — Ostaria San Michele" className="w-full h-full object-cover" style={{ transform: 'scale(1.15)' }} loading="lazy" width={800} height={550} />
         </div>
 
         {/* Services list */}

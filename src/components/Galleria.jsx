@@ -78,7 +78,7 @@ export default function Galleria() {
           {images.map((img, i) => (
             <div key={i} className="gal-item break-inside-avoid overflow-hidden rounded-sm cursor-pointer group" style={{ marginBottom: 'clamp(0.6rem, 1.2vw, 1rem)' }} onClick={() => setLightbox(img)}>
               <div className="relative overflow-hidden">
-                <img src={img.src} alt={img.alt} className="w-full object-cover group-hover:scale-[1.03] transition-transform duration-[1s] ease-out" style={{ height: heights[img.h] }} loading="lazy" />
+                <img src={img.src} alt={img.alt} title={img.alt} className="w-full object-cover group-hover:scale-[1.03] transition-transform duration-[1s] ease-out" style={{ height: heights[img.h] }} loading="lazy" width={400} height={350} />
               </div>
             </div>
           ))}

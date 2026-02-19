@@ -47,7 +47,7 @@ export default function Location() {
 
       {/* Full bleed hero image */}
       <div className="relative overflow-hidden" style={{ height: 'clamp(350px, 55vh, 600px)' }}>
-        <img ref={bigImgRef} src={vistaDrone} alt="Vista aerea di Grignaghe" className="w-full h-full object-cover" />
+        <img ref={bigImgRef} src={vistaDrone} alt="Vista aerea del borgo di Grignaghe sul Lago d'Iseo" title="Grignaghe — Borgo medievale a 900m" className="w-full h-full object-cover" loading="lazy" width={1920} height={600} />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(74,47,27,0.75) 0%, transparent 60%)' }} />
         <div className="absolute bottom-0 left-0 right-0 space-gutter pb-8 md:pb-12">
           <p className="text-cream-100 max-w-2xl" style={{ fontSize: 'clamp(1rem, 1.2vw, 1.2rem)', lineHeight: 1.7, fontWeight: 300 }}>
@@ -60,13 +60,13 @@ export default function Location() {
       {/* Image row — 3 images, different sizes */}
       <div className="space-gutter grid grid-cols-12 gap-3 md:gap-5" style={{ marginTop: 'clamp(2rem, 4vh, 3rem)' }}>
         <div className="col-span-12 md:col-span-7 overflow-hidden rounded-sm">
-          <img src={esternoGiochi} alt="Esterno terrazza e area giochi" className="w-full object-cover" style={{ height: 'clamp(240px, 38vh, 400px)' }} />
+          <img src={esternoGiochi} alt="Esterno con terrazza e area giochi per bambini" title="Terrazza esterna — Ostaria San Michele" className="w-full object-cover" style={{ height: 'clamp(240px, 38vh, 400px)' }} loading="lazy" width={800} height={400} />
         </div>
         <div className="col-span-6 md:col-span-3 overflow-hidden rounded-sm" style={{ marginTop: 'clamp(0rem, 2vw, 2rem)' }}>
-          <img src={dettaglioTavolo} alt="Dettaglio mise en place" className="w-full object-cover" style={{ height: 'clamp(180px, 32vh, 340px)' }} />
+          <img src={dettaglioTavolo} alt="Dettaglio mise en place del ristorante" title="Mise en place" className="w-full object-cover" style={{ height: 'clamp(180px, 32vh, 340px)' }} loading="lazy" width={400} height={340} />
         </div>
         <div className="col-span-6 md:col-span-2 overflow-hidden rounded-sm">
-          <img src={botte} alt="Botte Ostaria San Michele" className="w-full object-cover" style={{ height: 'clamp(180px, 32vh, 340px)' }} />
+          <img src={botte} alt="Botte decorativa sulla terrazza dell'Ostaria San Michele" title="Botte Ostaria" className="w-full object-cover" style={{ height: 'clamp(180px, 32vh, 340px)' }} loading="lazy" width={300} height={340} />
         </div>
       </div>
 

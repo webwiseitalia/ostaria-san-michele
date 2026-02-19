@@ -93,7 +93,7 @@ export default function LaCucina() {
               { src: tagliere, alt: 'Tagliere salumi e formaggi' },
             ].map((img, i) => (
               <div key={`${setIndex}-${i}`} className="flex-shrink-0 overflow-hidden rounded-sm" style={{ width: 'clamp(260px, 30vw, 380px)' }}>
-                <img src={img.src} alt={img.alt} className="w-full object-cover" style={{ height: 'clamp(180px, 24vh, 260px)' }} />
+                <img src={img.src} alt={img.alt} title={img.alt} className="w-full object-cover" style={{ height: 'clamp(180px, 24vh, 260px)' }} loading="lazy" width={380} height={260} />
               </div>
             ))
           )}
