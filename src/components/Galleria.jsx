@@ -43,7 +43,7 @@ const images = [
   { src: esterno, alt: 'Esterno e terrazza', h: 'tall' },
 ]
 
-const heights = { short: 'clamp(200px, 25vh, 280px)', medium: 'clamp(260px, 32vh, 350px)', tall: 'clamp(320px, 42vh, 450px)' }
+const heights = { short: 'clamp(200px, 25vh, 280px)', medium: 'clamp(260px, 32vh, 350px)', tall: 'clamp(320px, 42vh, 420px)' }
 
 export default function Galleria() {
   const [lightbox, setLightbox] = useState(null)
@@ -52,12 +52,7 @@ export default function Galleria() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.utils.toArray('.gal-item').forEach((el, i) => {
-        gsap.fromTo(el,
-          { y: 40 + (i % 3) * 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
-            scrollTrigger: { trigger: el, start: 'top 95%' }
-          }
-        )
+        gsap.fromTo(el, { y: 30 + (i % 3) * 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 95%' } })
       })
     }, sectionRef)
     return () => ctx.revert()
@@ -66,51 +61,30 @@ export default function Galleria() {
   return (
     <section ref={sectionRef} id="galleria" style={{ paddingTop: 'clamp(6rem, 14vh, 12rem)', paddingBottom: 'clamp(4rem, 10vh, 8rem)', background: 'var(--cream-50)' }}>
       <div className="space-gutter">
-        <div className="flex items-center gap-4 mb-6">
+        <div className="flex items-center gap-4 mb-8">
           <div className="w-12 h-px bg-wood-300" />
           <span className="mono text-[11px] tracking-[0.3em] uppercase text-wood-400">Le immagini</span>
         </div>
-
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12 md:mb-16">
-          <h2 className="font-serif text-wood-800" style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', fontWeight: 700, lineHeight: 0.95 }}>
-            Galleria
-          </h2>
-          <a
-            href="https://www.instagram.com/ostariasanmichele"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mono text-[11px] tracking-wider uppercase text-wood-400 hover:text-forest-600 transition-colors border-b border-wood-200 pb-0.5 self-start md:self-auto"
-          >
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+          <h2 className="font-serif text-wood-800" style={{ fontSize: 'clamp(2.4rem, 5vw, 4.5rem)', fontWeight: 700, lineHeight: 1, letterSpacing: '-0.02em' }}>Galleria</h2>
+          <a href="https://www.instagram.com/ostariasanmichele" target="_blank" rel="noopener noreferrer" className="mono text-[11px] tracking-wider uppercase text-wood-400 hover:text-forest-600 transition-colors border-b border-wood-200 pb-0.5 self-start md:self-auto">
             @ostariasanmichele
           </a>
         </div>
       </div>
 
-      {/* Masonry — 3 columns with uneven heights */}
       <div className="space-gutter">
-        <div className="columns-1 sm:columns-2 lg:columns-3" style={{ gap: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}>
+        <div className="columns-2 lg:columns-3" style={{ gap: 'clamp(0.6rem, 1.2vw, 1rem)' }}>
           {images.map((img, i) => (
-            <div
-              key={i}
-              className="gal-item break-inside-avoid overflow-hidden rounded-sm cursor-pointer group mb-3 lg:mb-4"
-              onClick={() => setLightbox(img)}
-            >
+            <div key={i} className="gal-item break-inside-avoid overflow-hidden rounded-sm cursor-pointer group" style={{ marginBottom: 'clamp(0.6rem, 1.2vw, 1rem)' }} onClick={() => setLightbox(img)}>
               <div className="relative overflow-hidden">
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="w-full object-cover group-hover:scale-105 transition-transform duration-[1.2s] ease-out"
-                  style={{ height: heights[img.h] }}
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-wood-900/0 group-hover:bg-wood-900/15 transition-colors duration-700" />
+                <img src={img.src} alt={img.alt} className="w-full object-cover group-hover:scale-[1.03] transition-transform duration-[1s] ease-out" style={{ height: heights[img.h] }} loading="lazy" />
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Lightbox */}
       {lightbox && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(26,51,31,0.95)' }} onClick={() => setLightbox(null)}>
           <button className="absolute top-4 right-4 text-cream-100/60 hover:text-cream-100 p-2 transition-colors" onClick={() => setLightbox(null)}>

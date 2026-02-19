@@ -141,6 +141,105 @@ a, button, [role="button"] {
   cursor: pointer;
 }
 
+/* Infinite marquee for food images */
+@keyframes food-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.food-marquee {
+  animation: food-scroll 25s linear infinite;
+}
+.food-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Hide scrollbar on horizontal scroll */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Background patterns & textures */
+
+/* Cross-hatch pattern — light sections (warm, linen-like) */
+.pattern-crosshatch {
+  position: relative;
+}
+.pattern-crosshatch::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      var(--wood-400) 0px,
+      var(--wood-400) 1px,
+      transparent 1px,
+      transparent 12px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      var(--wood-400) 0px,
+      var(--wood-400) 1px,
+      transparent 1px,
+      transparent 12px
+    );
+  z-index: 1;
+}
+.pattern-crosshatch > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Diagonal lines — dark sections (rustic weave feel) */
+.pattern-lines {
+  position: relative;
+}
+.pattern-lines::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.1;
+  background-image:
+    repeating-linear-gradient(
+      135deg,
+      rgba(90,153,96,0.3) 0px,
+      rgba(90,153,96,0.3) 1px,
+      transparent 1px,
+      transparent 18px
+    );
+  z-index: 1;
+}
+.pattern-lines > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Dot grid pattern — accent sections */
+.pattern-dots {
+  position: relative;
+}
+.pattern-dots::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image: radial-gradient(circle 1px, var(--wood-300) 1px, transparent 1px);
+  background-size: 24px 24px;
+  z-index: 1;
+}
+.pattern-dots > * {
+  position: relative;
+  z-index: 2;
+}
+
 /* Mono accent text */
 .mono {
   font-family: 'Space Mono', monospace;
